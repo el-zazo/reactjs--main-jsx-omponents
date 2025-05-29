@@ -1,24 +1,5 @@
 /* Start - Variables */
-:root {
-  --message-bg: #1c1b1b;
-  --message-border: #ffffff30;
-  --message-text: #ffffff80;
-  --message-close-bg: #ffffff20;
-  --message-close-hover-bg: #ffffff30;
-  --message-close-color: #ffffff30;
-  --message-close-hover-color: #ffffff80;
-  --info-color: #0e5fba;
-  --warning-color: #cc9a10;
-  --error-color: #a52a2a;
-}
-
-:root.dark {
-  --message-bg: #1c1b1b;
-  --message-border: #ffffff30;
-  --message-text: #ffffff80;
-}
-
-:root.light {
+:root #message-nav {
   --message-bg: #f5f5f5;
   --message-border: #00000030;
   --message-text: #00000080;
@@ -26,6 +7,22 @@
   --message-close-hover-bg: #00000030;
   --message-close-color: #00000030;
   --message-close-hover-color: #00000080;
+  --info-color: #0e5fba;
+  --warning-color: #cc9a10;
+  --error-color: #a52a2a;
+}
+
+:root.dark #message-nav {
+  --message-bg: #1c1b1b;
+  --message-border: #ffffff30;
+  --message-text: #ffffff80;
+  --message-close-bg: #ffffff20;
+  --message-close-hover-bg: #ffffff30;
+  --message-close-color: #ffffff30;
+  --message-close-hover-color: #ffffff80;
+  --info-color: #4a9eff;
+  --warning-color: #ffc107;
+  --error-color: #ff6b6b;
 }
 /* End - Variables */
 

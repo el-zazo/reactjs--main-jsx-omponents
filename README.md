@@ -12,6 +12,26 @@ A modern, animated notification system for React applications with Redux integra
 
 A simple, reusable dark background overlay component with Redux integration. DarkBG provides an elegant way to create modal-like experiences or highlight specific UI elements by dimming the rest of the page.
 
+### TwoStepButton Component
+
+A professional React component that provides a two-step confirmation button pattern. When clicked, it changes to a confirmation button that reverts to its original state after a specified timeout if not confirmed.
+
+### LoodingPage Component
+
+A lightweight, customizable loading spinner component that creates a full-screen overlay with an animated gear icon. Perfect for indicating background processes or page transitions in your application.
+
+### NotFoundPage Component
+
+A professionally styled 404 error page component that provides users with clear navigation options when they encounter missing content. Features a responsive design with customizable styling options.
+
+### ProtectedRoute Component
+
+A security-focused component with Redux integration that restricts access to sensitive routes based on authentication state. Automatically redirects unauthenticated users to a login page while preserving their intended destination.
+
+### FormBuilder Component
+
+A powerful, dynamic form generation component that creates complex forms from simple configuration objects. Supports various input types with built-in validation, custom styling, and flexible layout options.
+
 ## Features
 
 ### MessageNav Features
@@ -31,6 +51,46 @@ A simple, reusable dark background overlay component with Redux integration. Dar
 - 📱 **Responsive** - Covers the entire viewport regardless of screen size
 - 🔢 **Z-Index Control** - Properly layered to work with modals and popups
 
+### TwoStepButton Features
+
+- 🔄 **Two-Step Confirmation** - Prevents accidental clicks on important actions
+- ⏱️ **Auto-Reset** - Returns to initial state after a configurable timeout
+- 🎨 **Multiple Variants** - Includes default, danger, and success styling options
+- 🎯 **Customizable** - Configurable text, timeout, and styling
+- 🌓 **Light/Dark Mode Support** - Built-in theming with CSS variables
+
+### LoodingPage Features
+
+- 🔄 **Animated Spinner** - Smooth rotating gear animation for visual feedback
+- 🖤 **Full-Screen Overlay** - Creates a semi-transparent layer over your application
+- 📱 **Responsive Design** - Properly centered and sized on all screen dimensions
+- 🎨 **Customizable** - Configurable colors, size, and animation speed
+- 🌓 **Light/Dark Mode Support** - Built-in theming with CSS variables
+
+### NotFoundPage Features
+
+- 🚫 **Error Visualization** - Clear visual indication of 404 status with warning icon
+- 📝 **Informative Messaging** - Helpful explanation of the error situation
+- 🔄 **Navigation Options** - Direct link back to the home page
+- 🎨 **Professional Styling** - Modern, attractive design with animations
+- 🌓 **Light/Dark Mode Support** - Built-in theming with CSS variables
+
+### ProtectedRoute Features
+
+- 🔒 **Authentication Check** - Prevents unauthorized access to protected content
+- 🔄 **Redux Integration** - Easy state management with Redux Toolkit
+- 🧭 **Location Preservation** - Saves the requested URL for post-login redirection
+- 🎯 **Customizable Redirect** - Configurable redirect path for unauthenticated users
+- 📝 **Debugging Support** - Optional console logging for access attempts
+
+### FormBuilder Features
+
+- 🧩 **Dynamic Form Generation** - Create complex forms from simple configuration objects
+- ✅ **Built-in Validation** - Integrated with React Hook Form for robust validation
+- 🎨 **Multiple Input Types** - Support for text, email, password, textarea, checkbox fields
+- 🎯 **Customizable** - Configurable labels, placeholders, and validation rules
+- 🌓 **Light/Dark Mode Support** - Built-in theming with CSS variables
+
 ## Installation
 
 ```bash
@@ -43,12 +103,13 @@ npm install @elzazo/main-jsx-omponents
 
 ```jsx
 import { configureStore } from "@reduxjs/toolkit";
-import { messageNavReducer, darkBgReducer } from "@elzazo/main-jsx-omponents";
+import { messageNavReducer, darkBgReducer, protectedRouteReducer } from "@elzazo/main-jsx-omponents";
 
 export const store = configureStore({
   reducer: {
     message_nav: messageNavReducer,
     dark_bg: darkBgReducer,
+    protected_route: protectedRouteReducer,
     // your other reducers...
   },
 });
@@ -57,13 +118,30 @@ export const store = configureStore({
 ### 2. Add the components to your app
 
 ```jsx
-import { MessageNav, DarkBG } from "@elzazo/main-jsx-omponents";
+import { MessageNav, DarkBG, TwoStepButton, LoodingPage, NotFoundPage, ProtectedRoute, FormBuilder } from "@elzazo/main-jsx-omponents";
 
 function App() {
   return (
     <div className="app">
       <MessageNav />
       <DarkBG />
+      <TwoStepButton buttonText="Delete Item" onConfirm={() => console.log("Confirmed!")} />
+      {/* Loading state example */}
+      {isLoading && <LoodingPage />}
+
+      {/* Protected routes example */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/protected"
+          element={
+            <ProtectedRoute>
+              <SecurePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
       {/* Your app content */}
     </div>
   );
@@ -122,23 +200,23 @@ function YourComponent() {
 
 ```jsx
 import { useDispatch } from "react-redux";
-import { display_dark_bg, hide_dark_bg } from "@elzazo/main-jsx-omponents";
+import { displayDarkBg, hideDarkBg } from "@elzazo/main-jsx-omponents";
 
 function YourComponent() {
   const dispatch = useDispatch();
 
   const showDarkBG = () => {
-    dispatch(display_dark_bg());
+    dispatch(displayDarkBg());
   };
 
   const hideDarkBG = () => {
-    dispatch(hide_dark_bg());
+    dispatch(hideDarkBg());
   };
 
   // Auto-hide example
   const toggleDarkBG = () => {
-    dispatch(display_dark_bg());
-    setTimeout(() => dispatch(hide_dark_bg()), 3000); // Auto-hide after 3 seconds
+    dispatch(displayDarkBg());
+    setTimeout(() => dispatch(hideDarkBg()), 3000); // Auto-hide after 3 seconds
   };
 
   return (
@@ -173,6 +251,92 @@ import { DarkBG } from "@elzazo/main-jsx-omponents";
 <DarkBG />;
 ```
 
+### TwoStepButton Component
+
+A two-step confirmation button to prevent accidental actions.
+
+```jsx
+import { TwoStepButton } from "@elzazo/main-jsx-omponents";
+
+<TwoStepButton buttonText="Delete Item" confirmText="Confirm Delete" onConfirm={handleDelete} timeout={3000} variant="danger" />;
+```
+
+### LoodingPage Component
+
+A loading spinner overlay for indicating background processes.
+
+```jsx
+import { LoodingPage } from "@elzazo/main-jsx-omponents";
+
+// Use conditionally based on loading state
+{
+  isLoading && <LoodingPage />;
+}
+```
+
+### NotFoundPage Component
+
+A 404 error page for handling non-existent routes.
+
+```jsx
+import { NotFoundPage } from "@elzazo/main-jsx-omponents";
+
+// Typically used in route definitions
+<Route path="*" element={<NotFoundPage />} />;
+```
+
+### ProtectedRoute Component
+
+A wrapper component that protects routes requiring authentication.
+
+```jsx
+import { ProtectedRoute } from "@elzazo/main-jsx-omponents";
+
+<ProtectedRoute redirectPath="/login">
+  <SecureContent />
+</ProtectedRoute>;
+```
+
+### FormBuilder Component
+
+A dynamic form generator component.
+
+```jsx
+import { FormBuilder } from "@elzazo/main-jsx-omponents";
+
+const formFields = [
+  {
+    name: "email",
+    label: "Email Address",
+    type: "email",
+    placeholder: "Enter your email",
+    validation: {
+      required: "Email is required",
+      pattern: {
+        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        message: "Invalid email address",
+      },
+    },
+  },
+  {
+    name: "message",
+    label: "Your Message",
+    type: "textarea",
+    placeholder: "Type your message here",
+    rows: 4,
+    validation: {
+      required: "Message is required",
+      minLength: {
+        value: 10,
+        message: "Message must be at least 10 characters",
+      },
+    },
+  },
+];
+
+<FormBuilder fields={formFields} onSubmit={handleSubmit} title="Contact Form" />;
+```
+
 ### Redux Actions
 
 #### MessageNav Actions
@@ -204,78 +368,69 @@ dispatch(removeMessage(messageId));
 
 #### DarkBG Actions
 
-##### display_dark_bg
+##### displayDarkBg
 
 Shows the dark background overlay.
 
 ```jsx
-import { display_dark_bg } from "@elzazo/main-jsx-omponents";
+import { displayDarkBg } from "@elzazo/main-jsx-omponents";
 
-dispatch(display_dark_bg());
+dispatch(displayDarkBg());
 ```
 
-##### hide_dark_bg
+##### hideDarkBg
 
 Hides the dark background overlay.
 
 ```jsx
-import { hide_dark_bg } from "@elzazo/main-jsx-omponents";
+import { hideDarkBg } from "@elzazo/main-jsx-omponents";
 
-dispatch(hide_dark_bg());
+dispatch(hideDarkBg());
 ```
 
-## Customization
+#### ProtectedRoute Actions
 
-### MessageNav CSS Variables
+##### setIsAuthenticatedInProtectedRoute
 
-The MessageNav component uses CSS variables for styling, which you can override in your own CSS:
+Sets the authentication state for protected routes.
 
-```css
-:root {
-  --message-bg: #1c1b1b; /* Message background color */
-  --message-border: #ffffff30; /* Message border color */
-  --message-text: #ffffff80; /* Message text color */
-  --message-close-bg: #ffffff20; /* Close button background */
-  --message-close-hover-bg: #ffffff30; /* Close button hover background */
-  --message-close-color: #ffffff30; /* Close button color */
-  --message-close-hover-color: #ffffff80; /* Close button hover color */
-  --info-color: #0e5fba; /* Info icon color */
-  --warning-color: #cc9a10; /* Warning icon color */
-  --error-color: #a52a2a; /* Error icon color */
-  --padding-block: 10px; /* Vertical padding */
-}
+```jsx
+import { setIsAuthenticatedInProtectedRoute } from "@elzazo/main-jsx-omponents";
+
+// After successful login
+dispatch(setIsAuthenticatedInProtectedRoute(true));
+
+// After logout
+dispatch(setIsAuthenticatedInProtectedRoute(false));
 ```
 
-### DarkBG CSS Customization
+#### TwoStepButton Props
 
-The DarkBG component can be customized by overriding its CSS:
+| Prop          | Type     | Default   | Description                                            |
+| ------------- | -------- | --------- | ------------------------------------------------------ |
+| `buttonText`  | string   | "Action"  | Text displayed on the initial button                   |
+| `confirmText` | string   | "Confirm" | Text displayed on the confirmation button              |
+| `className`   | string   | ""        | Additional CSS class names                             |
+| `onConfirm`   | function | () => {}  | Function called when confirmation button is clicked    |
+| `timeout`     | number   | 3000      | Time in milliseconds before reverting to initial state |
+| `variant`     | string   | ""        | Button style variant (e.g., 'danger', 'success')       |
+| `disabled`    | boolean  | false     | Whether the button is disabled                         |
 
-```css
-#dark-bg {
-  background-color: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
-  z-index: 10; /* Adjust z-index based on your app's layers */
-}
-```
+#### ProtectedRoute Props
 
-### Light/Dark Mode Support
+| Prop           | Type   | Default  | Description                                            |
+| -------------- | ------ | -------- | ------------------------------------------------------ |
+| `children`     | node   | Required | The content to render when user is authenticated       |
+| `redirectPath` | string | "/login" | The path to redirect to when user is not authenticated |
 
-The component includes built-in support for light and dark modes:
+#### FormBuilder Props
 
-```css
-:root.light {
-  --message-bg: #f5f5f5;
-  --message-border: #00000030;
-  --message-text: #00000080;
-  /* ... other light mode variables */
-}
-
-:root.dark {
-  --message-bg: #1c1b1b;
-  --message-border: #ffffff30;
-  --message-text: #ffffff80;
-  /* ... other dark mode variables */
-}
-```
+| Prop                | Type     | Default  | Description                                             |
+| ------------------- | -------- | -------- | ------------------------------------------------------- |
+| `fields`            | array    | Required | Array of field configuration objects                    |
+| `onSubmit`          | function | Required | Function called when form is submitted                  |
+| `title`             | string   | ""       | Title displayed at the top of the form                  |
+| `additionalContent` | object   | {}       | Additional content to render before/after submit button |
 
 ## License
 

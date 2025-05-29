@@ -1,0 +1,87 @@
+/* Start - Variables */
+:root #not-found-page {
+  --not-found-bg: #1c1b1b;
+  --not-found-text: #ffffff;
+  --not-found-accent: #e74c3c;
+  --not-found-btn-bg: #3498db;
+  --not-found-btn-hover: #2980b9;
+}
+
+:root.dark #not-found-page {
+  --not-found-bg: #121212;
+  --not-found-text: #f0f0f0;
+  --not-found-accent: #ff6b6b;
+  --not-found-btn-bg: #4dabf7;
+  --not-found-btn-hover: #339af0;
+}
+/* End - Variables */
+
+/* Start - Not Found Page */
+#not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--not-found-bg);
+  color: var(--not-found-text);
+  text-align: center;
+  padding: 20px;
+}
+/* End - Not Found Page */
+
+/* Start - Not Found Container */
+#not-found-page .not-found-container {
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+/* End - Not Found Container */
+
+/* Start - Not Found Icon */
+#not-found-page .not-found-container .not-found-icon {
+  font-size: 80px;
+  color: var(--not-found-accent);
+  margin-bottom: 20px;
+}
+/* End - Not Found Icon */
+
+/* Start - Not Found Text */
+#not-found-page .not-found-container h1 {
+  font-size: 72px;
+  margin: 0;
+  color: var(--not-found-accent);
+  font-weight: 700;
+}
+
+#not-found-page .not-found-container h2 {
+  font-size: 32px;
+  margin: 10px 0 20px;
+}
+
+#not-found-page .not-found-container p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+/* End - Not Found Text */
+
+/* Start - Back Home Button */
+#not-found-page .not-found-container .back-home-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--not-found-btn-bg);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#not-found-page .not-found-container .back-home-btn:hover {
+  background-color: var(--not-found-btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+/* End - Back Home Button */

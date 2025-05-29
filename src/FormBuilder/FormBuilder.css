@@ -1,0 +1,183 @@
+/* FormBuilder Component Styles */
+
+/* Start - Color Variables */
+:root .form-page {
+  /* Form Colors */
+  --form-bg-color: #ffffff;
+  --form-text-color: #1a1a1a;
+  --input-border-color: #e0e0e0;
+  --input-focus-color: #5e72e4;
+  --error-color: #f5365c;
+  --success-color: #2dce89;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  /* Button Colors */
+  --button-bg-color: #5e72e4;
+  --button-text-color: #ffffff;
+  --button-hover-color: #4a5cd4;
+  --button-shadow: 0 4px 6px rgba(94, 114, 228, 0.3);
+
+  /* Animation */
+  --transition-speed: 0.3s;
+
+  /* Premium UI Elements */
+  --glass-effect: rgba(255, 255, 255, 0.1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --neon-glow: 0 0 10px rgba(94, 114, 228, 0.8);
+}
+
+/* Dark Mode Variables */
+:root.dark .form-page {
+  --form-bg-color: #1a1a1a;
+  --form-text-color: #f8f9fa;
+  --input-border-color: #333333;
+  --input-focus-color: #4a4a4a;
+  --error-color: #f5365c;
+  --success-color: #2dce89;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+
+  /* Button Colors */
+  --button-bg-color: #333333;
+  --button-text-color: #ffffff;
+  --button-hover-color: #4a4a4a;
+  --button-shadow: 0 4px 6px rgba(51, 51, 51, 0.3);
+
+  /* Premium UI Elements - Dark Mode */
+  --glass-effect: rgba(0, 0, 0, 0.1);
+  --glass-border: 1px solid rgba(0, 0, 0, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  --neon-glow: 0 0 10px rgba(51, 51, 51, 0.8);
+}
+/* End - Color Variables */
+
+/* Start - Form Page Container */
+.form-page {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--form-text-color);
+}
+
+.form-page h1 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--input-focus-color);
+}
+/* End - Form Page Container */
+
+/* Start - Form Container */
+.form-page .form-container {
+  background-color: var(--form-bg-color);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow), 0 10px 20px var(--shadow-color);
+  transition: all var(--transition-speed) ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: var(--glass-border);
+}
+
+.form-page .form-container:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--glass-shadow), 0 15px 30px var(--shadow-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.form-page .form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-page .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-page .form-group input,
+.form-page .form-group textarea {
+  /* width: 100%; */
+  padding: 0.75rem;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  background-color: var(--form-bg-color);
+  color: var(--form-text-color);
+  transition: border-color 0.2s;
+}
+
+.form-page .form-group input:focus,
+.form-page .form-group textarea:focus {
+  outline: none;
+  border-color: var(--input-focus-color);
+  box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+}
+
+.form-page .form-group .error {
+  border-color: var(--error-color);
+}
+
+.form-page .error-message {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.form-page .submit-button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--button-shadow), var(--neon-glow);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-page .submit-button:hover {
+  background-color: var(--button-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px var(--shadow-color), var(--neon-glow);
+}
+
+.form-page .submit-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.form-page .submit-button:hover::after {
+  left: 100%;
+}
+/* End - Form Container */
+
+/* Start - Form Options */
+.form-page .form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-page .form-options label {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+/* End - Form Options */

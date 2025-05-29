@@ -1,0 +1,87 @@
+/* Start - Variables */
+:root .two-step-button {
+  --btn-confirm-primary: #3498db;
+  --btn-confirm-hover: #2980b9;
+  --btn-confirm-text: #ffffff;
+  --btn-confirm-danger: #e74c3c;
+  --btn-confirm-danger-hover: #c0392b;
+  --btn-confirm-success: #2ecc71;
+  --btn-confirm-success-hover: #27ae60;
+  --btn-confirm-transition: 0.3s ease;
+}
+
+:root.dark .two-step-button {
+  --btn-confirm-primary: #2980b9;
+  --btn-confirm-hover: #3498db;
+  --btn-confirm-text: #f5f5f5;
+  --btn-confirm-danger: #c0392b;
+  --btn-confirm-danger-hover: #e74c3c;
+  --btn-confirm-success: #27ae60;
+  --btn-confirm-success-hover: #2ecc71;
+}
+/* End - Variables */
+
+/* Start - Base Button */
+.two-step-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--btn-confirm-transition), transform var(--btn-confirm-transition);
+  border: none;
+  outline: none;
+  background-color: var(--btn-confirm-primary);
+  color: var(--btn-confirm-text);
+}
+
+.two-step-button:hover {
+  background-color: var(--btn-confirm-hover);
+  transform: translateY(-1px);
+}
+
+.two-step-button:active {
+  transform: translateY(0);
+}
+/* End - Base Button */
+
+/* Start - Confirm Button */
+.two-step-button.second-btn {
+  background-color: var(--btn-confirm-danger);
+  animation: pulse 1.5s infinite;
+}
+
+.two-step-button.second-btn:hover {
+  background-color: var(--btn-confirm-danger-hover);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+  }
+}
+/* End - Confirm Button */
+
+/* Start - Variants */
+.two-step-button.danger {
+  background-color: var(--btn-confirm-danger);
+}
+
+.two-step-button.danger:hover {
+  background-color: var(--btn-confirm-danger-hover);
+}
+
+.two-step-button.success {
+  background-color: var(--btn-confirm-success);
+}
+
+.two-step-button.success:hover {
+  background-color: var(--btn-confirm-success-hover);
+}
+/* End - Variants */

@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import "./DarkBG.css";
 
 export default function DarkBG() {
-  const display_dark_bg = useSelector((st) => st.dark_bg.display);
+  const displayDarkBg = useSelector((st) => st.dark_bg.display);
 
-  return display_dark_bg && <div id="dark-bg"></div>;
+  return displayDarkBg && <div id="dark-bg"></div>;
 }

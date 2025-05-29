@@ -5,14 +5,14 @@ const darkBgSlice = createSlice({
   name: "darkBg",
   initialState: darkBgInitialState,
   reducers: {
-    display_dark_bg: (state) => {
+    displayDarkBg: (state) => {
       state.display = true;
     },
-    hide_dark_bg: (state) => {
+    hideDarkBg: (state) => {
       state.display = false;
     },
   },
 });
 
 export default darkBgSlice.reducer;
-export const { display_dark_bg, hide_dark_bg } = darkBgSlice.actions;
+export const { displayDarkBg, hideDarkBg } = darkBgSlice.actions;

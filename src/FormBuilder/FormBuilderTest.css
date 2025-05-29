@@ -1,0 +1,38 @@
+/* FormBuilderTest Component Styles */
+
+/* Start - Form Data Display */
+.form-data-display {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--form-bg-color);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow), 0 10px 20px var(--shadow-color);
+  transition: all var(--transition-speed) ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: var(--glass-border);
+}
+
+.form-data-display h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--input-focus-color);
+}
+
+.form-data-display pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--form-text-color);
+}
+
+/* Dark mode adjustments */
+:root.dark .form-data-display pre {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+/* End - Form Data Display */
