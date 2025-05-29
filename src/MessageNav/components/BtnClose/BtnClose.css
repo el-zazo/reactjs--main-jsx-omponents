@@ -1,0 +1,14 @@
+/* Start - Message Btn Close */
+#message-nav .message .btn-close {
+  color: var(--message-close-color);
+  cursor: pointer;
+  transition: 0.3s;
+  padding-inline: 15px;
+  background-color: var(--message-close-bg);
+}
+
+#message-nav .message .btn-close:hover {
+  color: var(--message-close-hover-color);
+  background-color: var(--message-close-hover-bg);
+}
+/* End - Message Btn Close */

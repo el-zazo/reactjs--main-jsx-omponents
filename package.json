@@ -1,0 +1,32 @@
+{
+  "name": "@elzazo/main-jsx-omponents",
+  "version": "1.0.0",
+  "description": "A collection of reusable React JSX components for building modern web applications",
+  "main": "index.js",
+  "author": "elzazo",
+  "license": "ISC",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.7"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "framer-motion": "^11.15.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1"
+  }
+}

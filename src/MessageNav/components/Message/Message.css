@@ -1,0 +1,68 @@
+/* Start - Message */
+#message-nav .message {
+  position: relative;
+  background-color: var(--message-bg);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--message-border);
+  width: fit-content;
+  align-items: center;
+  overflow: hidden;
+}
+/* End - Message */
+
+/* Start - Elements In Message */
+#message-nav .message * {
+  display: flex;
+  align-items: center;
+  padding-block: 20px;
+  height: calc(100% - 40px);
+}
+/* End - Elements In Message */
+
+/* Start - Bar Time */
+#message-nav .message::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  animation: bar-time 10s ease-in-out;
+}
+
+#message-nav .message.info::before {
+  background-color: var(--info-color);
+}
+
+#message-nav .message.warning::before {
+  background-color: var(--warning-color);
+}
+
+#message-nav .message.error::before {
+  background-color: var(--error-color);
+}
+/* End - Bar Time */
+
+/* Start - Message Text */
+#message-nav .message .text {
+  color: var(--message-text);
+  padding-right: 20px;
+  padding-left: 10px;
+}
+/* End - Message Text */
+
+/* Start - Animations */
+@keyframes bar-time {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+/* End - Animations */

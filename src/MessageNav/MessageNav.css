@@ -1,0 +1,60 @@
+/* Start - Variables */
+:root {
+  --message-bg: #1c1b1b;
+  --message-border: #ffffff30;
+  --message-text: #ffffff80;
+  --message-close-bg: #ffffff20;
+  --message-close-hover-bg: #ffffff30;
+  --message-close-color: #ffffff30;
+  --message-close-hover-color: #ffffff80;
+  --info-color: #0e5fba;
+  --warning-color: #cc9a10;
+  --error-color: #a52a2a;
+}
+
+:root.dark {
+  --message-bg: #1c1b1b;
+  --message-border: #ffffff30;
+  --message-text: #ffffff80;
+}
+
+:root.light {
+  --message-bg: #f5f5f5;
+  --message-border: #00000030;
+  --message-text: #00000080;
+  --message-close-bg: #00000020;
+  --message-close-hover-bg: #00000030;
+  --message-close-color: #00000030;
+  --message-close-hover-color: #00000080;
+}
+/* End - Variables */
+
+/* Start - Message Nav Container */
+#message-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  overflow: auto;
+  max-height: calc(100% - 20px);
+  padding: 10px;
+  z-index: 100;
+}
+/* End - Message Nav Container */
+
+/* Start - Scroll Bar */
+#message-nav::-webkit-scrollbar {
+  width: 0px;
+}
+
+#message-nav::-webkit-scrollbar-thumb {
+  background-color: #575757;
+}
+
+#message-nav::-webkit-scrollbar-track-piece {
+  background-color: #808080;
+}
+/* End - Scroll Bar */

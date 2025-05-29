@@ -1,0 +1,18 @@
+/* Start - Icon For Type */
+#message-nav .message .icon-for-type {
+  padding-inline: 20px 5px;
+  font-size: 25px;
+}
+
+#message-nav .message .icon-for-type.info {
+  color: var(--info-color);
+}
+
+#message-nav .message .icon-for-type.warning {
+  color: var(--warning-color);
+}
+
+#message-nav .message .icon-for-type.error {
+  color: var(--error-color);
+}
+/* End - Icon For Type */
