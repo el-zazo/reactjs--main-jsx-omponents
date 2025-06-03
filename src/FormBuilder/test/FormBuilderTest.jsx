@@ -238,7 +238,7 @@ const FormBuilderTest = () => {
 
   return (
     <div>
-      <FormBuilder fields={fields} onSubmit={handleSubmit} title="FormBuilder Test Page" />
+      <FormBuilder fields={fields} submit={{ handleEvent: handleSubmit }} title="FormBuilder Test Page" />
 
       {formData && (
         <div className="form-data-display">

@@ -7,6 +7,7 @@ A dynamic form generator that creates forms based on configuration objects. The 
 - Dynamic form generation from configuration objects
 - Support for multiple field types
 - Built-in validation using React Hook Form
+- Submit and cancel button support with custom handlers
 - Customizable styling with CSS variables
 - Dark mode support
 - Responsive design
@@ -55,7 +56,7 @@ const MyForm = () => {
     },
   ];
 
-  return <FormBuilder fields={fields} onSubmit={handleSubmit} title="Contact Form" />;
+  return <FormBuilder fields={fields} onSubmit={handleSubmit} title="Contact Form" submitButtonText="Send" />;
 };
 
 export default MyForm;
@@ -63,27 +64,72 @@ export default MyForm;
 
 ## Props
 
-| Prop                | Type     | Description                                             | Required |
-| ------------------- | -------- | ------------------------------------------------------- | -------- |
-| `fields`            | Array    | Array of field configuration objects                    | Yes      |
-| `onSubmit`          | Function | Form submission handler                                 | Yes      |
-| `title`             | String   | Form title                                              | No       |
-| `additionalContent` | Object   | Additional content to render before/after submit button | No       |
+| Prop                | Type   | Description                                             | Required |
+| ------------------- | ------ | ------------------------------------------------------- | -------- |
+| `fields`            | Array  | Array of field configuration objects                    | Yes      |
+| `title`             | String | Form title                                              | No       |
+| `additionalContent` | Object | Additional content to render before/after submit button | No       |
+| `submit`            | Object | Submit button configuration (see Submit Object)         | No       |
+| `cancel`            | Object | Cancel button configuration (see Cancel Object)         | No       |
 
 ### additionalContent Object
 
-| Property       | Type            | Description                                |
-| -------------- | --------------- | ------------------------------------------ |
-| `beforeSubmit` | React.ReactNode | Content to render before the submit button |
-| `afterSubmit`  | React.ReactNode | Content to render after the submit button  |
+| Property       | Type            | Description                          |
+| -------------- | --------------- | ------------------------------------ |
+| `beforeSubmit` | React.ReactNode | Content to render before the buttons |
+| `afterSubmit`  | React.ReactNode | Content to render after the buttons  |
+
+### Submit Object
+
+| Property      | Type     | Description                | Default    |
+| ------------- | -------- | -------------------------- | ---------- |
+| `handleEvent` | Function | Submit event handler       | `null`     |
+| `text`        | String   | Text for the submit button | `"Submit"` |
+
+### Cancel Object
+
+| Property      | Type     | Description                | Default    |
+| ------------- | -------- | -------------------------- | ---------- |
+| `handleEvent` | Function | Cancel event handler       | `null`     |
+| `text`        | String   | Text for the cancel button | `"Cancel"` |
+
+**Note:** The cancel button will only be displayed if `cancel.handleEvent` is provided.
 
 Example usage:
 
 ```jsx
 <FormBuilder
   fields={fields}
+  title="Contact Form"
+  submit={{
+    handleEvent: (data) => {
+      console.log("Form submitted:", data);
+      // Handle form submission
+    },
+    text: "Send Message",
+  }}
+  cancel={{
+    handleEvent: () => {
+      console.log("Form cancelled");
+      // Handle form cancellation
+    },
+    text: "Go Back",
+  }}
+  additionalContent={{
+    beforeSubmit: <div className="disclaimer">By submitting this form, you agree to our terms.</div>,
+    afterSubmit: <div className="help-text">Need help? Contact support.</div>,
+  }}
+/>
+```
+
+**Legacy usage (still supported for backward compatibility):**
+
+```jsx
+<FormBuilder
+  fields={fields}
   onSubmit={handleSubmit}
   title="Contact Form"
+  submitButtonText="Send Message"
   additionalContent={{
     beforeSubmit: <div className="disclaimer">By submitting this form, you agree to our terms.</div>,
     afterSubmit: <div className="help-text">Need help? Contact support.</div>,
@@ -338,7 +384,12 @@ Example with multiple validation rules:
   <h1>Form Title</h1>
   <form class="form-container">
     <!-- Form fields are rendered here -->
-    <button type="submit" class="submit-button">Submit</button>
+    <div class="form-buttons">
+      <!-- Cancel button (only shown if cancel.handleEvent is provided) -->
+      <button type="button" class="cancel-button">Cancel</button>
+      <!-- Submit button -->
+      <button type="submit" class="submit-button">Submit</button>
+    </div>
   </form>
 </div>
 ```
@@ -443,6 +494,11 @@ const CompleteFormExample = () => {
     console.log("Form submitted:", data);
   };
 
+  const handleCancel = () => {
+    console.log("Form cancelled");
+    // Navigate away or reset form
+  };
+
   const fields = [
     {
       name: "fullName",
@@ -522,8 +578,15 @@ const CompleteFormExample = () => {
   return (
     <FormBuilder
       fields={fields}
-      onSubmit={handleSubmit}
       title="Contact Form"
+      submit={{
+        handleEvent: handleSubmit,
+        text: "Submit Form",
+      }}
+      cancel={{
+        handleEvent: handleCancel,
+        text: "Cancel",
+      }}
       additionalContent={{
         beforeSubmit: <div className="disclaimer">By submitting this form, you agree to our terms.</div>,
       }}
@@ -554,6 +617,9 @@ The FormBuilder component uses CSS variables for styling, which can be customize
   --button-text-color: #ffffff;
   --button-hover-color: #4a5cd4;
   --button-shadow: 0 4px 6px rgba(94, 114, 228, 0.3);
+
+  /* Cancel Button Colors */
+  /* The cancel button uses the error-color by default */
 
   /* Animation */
   --transition-speed: 0.3s;
