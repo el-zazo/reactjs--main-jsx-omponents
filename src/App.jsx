@@ -1,21 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
+import "./App.css";
 // Actions
 import { addMessage } from "./MessageNav/redux/Slice";
 import { displayDarkBg, hideDarkBg } from "./DarkBG/redux/Slice";
 import { setIsAuthenticatedInProtectedRoute } from "./ProtectedRoute/redux/Slice";
-
-// styles
-import "./App.css";
-
-// components
+// Components
 import MessageNav from "./MessageNav/MessageNav";
 import DarkBG from "./DarkBG/DarkBG";
 import TwoStepButton from "./TwoStepButton/TwoStepButton";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
-import FormBuilderTest from "./FormBuilder/FormBuilderTest";
+import FormBuilderTest from "./FormBuilder/test/FormBuilderTest";
+import FormBuilderTestWithManyInputs from "./FormBuilder/test/FormBuilderTestWithManyInputs";
 
 export default function App() {
   const dsp = useDispatch();
@@ -115,6 +112,11 @@ export default function App() {
                     Form Builder Test
                   </Link>
                 </li>
+                <li>
+                  <Link to="/form-builder-many-inputs" style={{ textDecoration: "none", color: "#0066cc" }}>
+                    Form Builder Many Inputs
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -135,6 +137,7 @@ export default function App() {
                 }
               />
               <Route path="/form-builder" element={<FormBuilderTest />} />
+              <Route path="/form-builder-many-inputs" element={<FormBuilderTestWithManyInputs />} />
             </Routes>
           </div>
         </div>

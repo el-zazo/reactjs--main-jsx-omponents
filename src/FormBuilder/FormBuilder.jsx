@@ -1,6 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./FormBuilder.css";
+// Components
+import MainInputs from "./Tags/MainInputs/MainInputs";
+import Textarea from "./Tags/Textarea/Textarea";
+import Checkbox from "./Tags/Checkbox/Checkbox";
+import Select from "./Tags/Select/Select";
+import ManyInputs from "./Tags/ManyInputs/ManyInputs";
 
 /**
  * FormBuilder Component
@@ -14,51 +20,39 @@ import "./FormBuilder.css";
  * @param {React.ReactNode} props.additionalContent.afterSubmit - Content to render after submit button
  */
 const FormBuilder = ({ fields, onSubmit, title, additionalContent = { beforeSubmit: null, afterSubmit: null } }) => {
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, getValues, formState, setValue, clearErrors } = useForm();
+  const { errors } = formState;
 
   const renderField = (field) => {
+    // Process field validation if present
+    if (field?.validation) {
+      // Store the original validate function to avoid recursive calls
+      const originalValidate = field.validation?.validate;
+
+      field.validation = {
+        ...field.validation,
+        validate: originalValidate ? (value) => originalValidate(value, { getValues }) : undefined,
+      };
+    }
+
+    // Process field validation and prepare field for rendering
     switch (field.type) {
       case "text":
       case "email":
       case "password":
-        return (
-          <div className="form-group" key={field.name}>
-            <label htmlFor={field.name}>{field.label}</label>
-            <input
-              id={field.name}
-              type={field.type}
-              {...register(field.name, {
-                ...field.validation,
-                validate: field.validation.validate ? (value) => field.validation.validate(value, { getValues }) : undefined,
-              })}
-              className={errors[field.name] ? "error" : ""}
-              placeholder={field.placeholder}
-            />
-            {errors[field.name] && <span className="error-message">{errors[field.name].message}</span>}
-          </div>
-        );
+      case "number":
+      case "date":
+      case "time":
+      case "datetime-local":
+        return <MainInputs field={field} register={register} errors={errors} />;
       case "textarea":
-        return (
-          <div className="form-group" key={field.name}>
-            <label htmlFor={field.name}>{field.label}</label>
-            <textarea id={field.name} rows={field.rows || 5} {...register(field.name, field.validation)} className={errors[field.name] ? "error" : ""} placeholder={field.placeholder} />
-            {errors[field.name] && <span className="error-message">{errors[field.name].message}</span>}
-          </div>
-        );
+        return <Textarea field={field} register={register} errors={errors} />;
       case "checkbox":
-        return (
-          <div className="form-options" key={field.name}>
-            <div className={field.className}>
-              <input type="checkbox" id={field.name} {...register(field.name)} onChange={field.onChange} checked={field.checked} />
-              <label htmlFor={field.name}>{field.label}</label>
-            </div>
-          </div>
-        );
+        return <Checkbox field={field} register={register} errors={errors} />;
+      case "select":
+        return <Select field={field} register={register} errors={errors} />;
+      case "many-inputs":
+        return <ManyInputs field={field} register={register} getValues={getValues} setValue={setValue} clearErrors={clearErrors} errors={errors} />;
       default:
         return null;
     }
@@ -69,7 +63,10 @@ const FormBuilder = ({ fields, onSubmit, title, additionalContent = { beforeSubm
       <h1>{title}</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        {fields.map(renderField)}
+        {fields.map((field, index) => (
+          <React.Fragment key={field.name || `field-${index}`}>{renderField(field)}</React.Fragment>
+        ))}
+
         {additionalContent.beforeSubmit}
         <button type="submit" className="submit-button">
           Submit

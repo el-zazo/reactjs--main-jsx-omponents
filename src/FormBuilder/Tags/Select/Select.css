@@ -1,0 +1,23 @@
+/* Start - Select Component Styles */
+.form-group select[multiple] {
+  min-height: 120px;
+  padding: 0.5rem;
+}
+
+.form-group select[multiple] option {
+  padding: 0.5rem;
+  margin-bottom: 2px;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.form-group select[multiple] option:checked {
+  background-color: rgba(94, 114, 228, 0.2);
+  color: var(--input-focus-color, #5e72e4);
+  font-weight: 500;
+}
+
+.form-group select[multiple] option:hover {
+  background-color: rgba(94, 114, 228, 0.1);
+}
+/* End - Select Component Styles */

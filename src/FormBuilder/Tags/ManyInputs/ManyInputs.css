@@ -1,0 +1,120 @@
+/* Start - ManyInputs Component Styles */
+
+/* Start - Container Styles */
+.many-inputs-container {
+  width: 100%;
+}
+/* End - Container Styles */
+
+/* Start - Row Container Styles */
+.many-inputs-container .many-inputs-row-container:not(:last-child) {
+  margin-bottom: 1rem;
+}
+/* End - Row Container Styles */
+
+/* Start - Row Styles */
+.many-inputs-container .many-inputs-row-container .many-inputs-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+.many-inputs-container .many-inputs-row-container .many-inputs-row.error {
+  border-color: var(--error-color);
+}
+.many-inputs-container .many-inputs-row-container .many-inputs-row.focused {
+  border-color: var(--focus-color, #4a90e2);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+/* End - Row Styles */
+
+/* Start - Input Field Styles */
+.many-inputs-container .many-inputs-row-container .many-inputs-row input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0.6rem;
+}
+.many-inputs-container .many-inputs-row-container .many-inputs-row input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+/* End - Input Field Styles */
+
+/* Start - Button Base Styles */
+.many-inputs-container .many-inputs-row-container .many-inputs-row button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  padding: 0.8rem;
+}
+/* End - Button Base Styles */
+
+/* Start - Add Button Styles */
+.many-inputs-container .many-inputs-row-container .many-inputs-row .btn-add {
+  color: var(--success-color);
+}
+/* End - Add Button Styles */
+
+/* Start - Remove Button Styles */
+.many-inputs-container .many-inputs-row-container .many-inputs-row .btn-remove {
+  color: var(--error-color);
+}
+/* End - Remove Button Styles */
+
+/* Start - Button Hover States */
+.many-inputs-container .many-inputs-row-container .many-inputs-row .btn-add:hover,
+.many-inputs-container .many-inputs-row-container .many-inputs-row .btn-remove:hover {
+  background-color: var(--hover-bg-color, rgba(0, 0, 0, 0.05));
+}
+/* End - Button Hover States */
+
+/* Start - Disabled Button Styles */
+.many-inputs-container .many-inputs-row-container .many-inputs-row button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.many-inputs-container .many-inputs-row-container .many-inputs-row button.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+/* End - Disabled Button Styles */
+
+/* Start - Dark Mode Styles */
+:root.dark .many-inputs-container .many-inputs-row-container .many-inputs-row {
+  border-color: var(--dark-border-color, #444);
+}
+:root.dark .many-inputs-container .many-inputs-row-container .many-inputs-row.error {
+  border-color: var(--error-color);
+}
+:root.dark .many-inputs-container .many-inputs-row-container .many-inputs-row.focused {
+  border-color: var(--focus-color, #5a9aea);
+  box-shadow: 0 0 0 2px rgba(90, 154, 234, 0.25);
+}
+
+:root.dark .many-inputs-container .many-inputs-row-container .many-inputs-row .btn-add:hover,
+:root.dark .many-inputs-container .many-inputs-row-container .many-inputs-row .btn-remove:hover {
+  background-color: var(--dark-hover-bg-color, rgba(255, 255, 255, 0.1));
+}
+/* End - Dark Mode Styles */
+
+/* Start - Error Message Styles */
+.many-inputs-container .many-inputs-row-container .error-message {
+  color: var(--error-color, #dc3545);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+/* End - Error Message Styles */
+
+/* End - ManyInputs Component Styles */
