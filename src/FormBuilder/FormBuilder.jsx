@@ -35,19 +35,21 @@ const FormBuilder = ({
   const { errors } = formState;
 
   const renderField = (field) => {
-    // Process field validation if present
-    if (field?.validation) {
-      // Store the original validate function to avoid recursive calls
-      const originalValidate = field.validation?.validate;
+    const copiedField = { ...field }
 
-      field.validation = {
-        ...field.validation,
+    // Process field validation if present
+    if (copiedField?.validation) {
+      // Store the original validate function to avoid recursive calls
+      const originalValidate = copiedField.validation?.validate;
+
+      copiedField.validation = {
+        ...copiedField.validation,
         validate: originalValidate ? (value) => originalValidate(value, { getValues }) : undefined,
       };
     }
 
     // Process field validation and prepare field for rendering
-    switch (field.type) {
+    switch (copiedField.type) {
       case "text":
       case "email":
       case "password":
@@ -55,15 +57,15 @@ const FormBuilder = ({
       case "date":
       case "time":
       case "datetime-local":
-        return <MainInputs field={field} register={register} errors={errors} />;
+        return <MainInputs field={copiedField} register={register} errors={errors} />;
       case "textarea":
-        return <Textarea field={field} register={register} errors={errors} />;
+        return <Textarea field={copiedField} register={register} errors={errors} />;
       case "checkbox":
-        return <Checkbox field={field} register={register} errors={errors} />;
+        return <Checkbox field={copiedField} register={register} errors={errors} />;
       case "select":
-        return <Select field={field} register={register} errors={errors} />;
+        return <Select field={copiedField} register={register} errors={errors} />;
       case "many-inputs":
-        return <ManyInputs field={field} register={register} getValues={getValues} setValue={setValue} clearErrors={clearErrors} errors={errors} />;
+        return <ManyInputs field={copiedField} register={register} getValues={getValues} setValue={setValue} clearErrors={clearErrors} errors={errors} />;
       default:
         return null;
     }
