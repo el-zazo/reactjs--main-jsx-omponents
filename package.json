@@ -1,6 +1,6 @@
 {
-  "name": "@elzazo/main-jsx-omponents",
-  "version": "1.0.5",
+  "name": "@elzazo/main-jsx-components",
+  "version": "1.0.0",
   "description": "A collection of reusable React JSX components for building modern web applications",
   "main": "index.js",
   "author": "elzazo",
